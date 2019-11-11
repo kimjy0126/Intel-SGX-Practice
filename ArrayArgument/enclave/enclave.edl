@@ -1,0 +1,10 @@
+enclave {
+	trusted {
+        public void ecall_reverse_pw([in, out] char pw[11]);
+        void ecall_process_pw([in, out] char pw[11]);
+	};
+	untrusted {
+   //     void ocall_print([in] char* string);
+        void ocall_print(char ch);
+    };
+};
