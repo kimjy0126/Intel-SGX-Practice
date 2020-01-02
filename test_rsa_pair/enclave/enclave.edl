@@ -1,0 +1,9 @@
+enclave {
+	trusted {
+        public void ecall_manage_rsa(void);
+	};
+	untrusted {
+        void ocall_print([in, string] char* str);
+        void ocall_printd(uint8_t n);
+    };
+};
