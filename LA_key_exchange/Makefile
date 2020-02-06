@@ -93,8 +93,10 @@ main:	Sender/Sender_u.o Receiver/Receiver_u.o main.o ocall_print.o untrusted.o
 clean:
 	rm -f Sender/Sender_t*
 	rm -f Sender/Sender_u*
+	rm -f Sender/Sender.o
 	rm -f Receiver/Receiver_t*
 	rm -f Receiver/Receiver_u*
+	rm -f Receiver/Receiver.o
 	rm -f *.so
 	rm -f *.o
 	rm -f main
