@@ -1,0 +1,10 @@
+enclave {
+    trusted {
+    };
+
+    untrusted {
+        void ocall_prints([in, string] char* str);
+        void ocall_printx(char ch);
+        void ocall_printe([in, string] char* str, int n);
+    };
+};

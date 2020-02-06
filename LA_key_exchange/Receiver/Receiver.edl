@@ -1,0 +1,18 @@
+enclave {
+    from "../ocall_print.edl" import *;
+
+    include "sgx_eid.h"
+    include "sgx_dh.h"
+
+    trusted {
+        public int session_request(sgx_enclave_id_t eid_src, [out] sgx_dh_msg1_t* dh_msg1, \
+                [out] uint32_t* session_id);
+        public int exchange_report(sgx_enclave_id_t eid_src, [in] sgx_dh_msg2_t* dh_msg2, \
+                [out] sgx_dh_msg3_t* dh_msg3, uint32_t session_id);
+    };
+
+    untrusted {
+//        void ocall_prints([in, string] char* str);
+//        void ocall_printe([in, string] char* str, int n);
+    };
+};

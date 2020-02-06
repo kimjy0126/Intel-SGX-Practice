@@ -1,0 +1,22 @@
+enclave {
+    from "../ocall_print.edl" import *;
+
+    include "sgx_eid.h"
+    include "sgx_dh.h"
+
+    trusted {
+        public int initialize_session(sgx_enclave_id_t eid_src, sgx_enclave_id_t eid_dst);
+        int create_session(sgx_enclave_id_t eid_src, sgx_enclave_id_t eid_dst, \
+                [in, out] sgx_dh_session_t* session_info);
+    };
+
+    untrusted {
+//        void ocall_prints([in, string] char* str);
+//        void ocall_printe([in, string] char* str, int n);
+        int session_request_ocall(sgx_enclave_id_t eid_src, sgx_enclave_id_t eid_dst, \
+                [in, out] sgx_dh_msg1_t* dh_msg1, [in, out] uint32_t* session_id);
+        int exchange_report_ocall(sgx_enclave_id_t eid_src, sgx_enclave_id_t eid_dst, \
+                [in, out] sgx_dh_msg2_t* dh_msg2, [in, out] sgx_dh_msg3_t* dh_msg3, \
+                uint32_t session_id);
+    };
+};
