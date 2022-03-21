@@ -6,6 +6,8 @@ static sgx_dh_session_t sgx_dh_session;
 static sgx_key_128bit_t aek;
 static sgx_dh_session_enclave_identity_t initiator_identity;
 
+#define DEBUG 0
+
 int session_request(sgx_enclave_id_t eid_src, sgx_dh_msg1_t* dh_msg1, uint32_t* session_id)
 {
     sgx_status_t ret;
@@ -71,12 +73,14 @@ int exchange_report(sgx_enclave_id_t eid_src, sgx_dh_msg2_t* dh_msg2, \
         (char*)&dh_aek + i = 0;
     }*/
 
+    #if DEBUG
     ocall_prints("Receiver AEK: \n");
     for (int i = 0; i < tmp; i++) {
         ocall_printx(*((char*)aek + i));
         ocall_prints(" ");
     }
     ocall_prints("\n");
+    #endif
 
     return 0;
 }
